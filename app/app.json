@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Altruist",
+    "slug": "Altruist",
+    "description": "Altruist connects local volunteers with vulnerable people in need. Altruist enables people to request help and allow volunteers to easily pick up the task from their local communities. Vulnerable people can ask for help by themselves, or on behalf of other non-technical vulnerable people.",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.endava.Altruist",
+      "versionCode": 3
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.endava.volunteersharing",
+      "buildNumber": "3"
+    }
+  }
+}
