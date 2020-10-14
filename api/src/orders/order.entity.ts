@@ -1,7 +1,8 @@
-import { AfterLoad, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IsEnum, IsNumber, IsString } from "class-validator";
 import { User } from "../user/user.entity";
 import { ColumnNumericTransformer } from "./column-transformer";
+import { Report } from 'src/report/report.entity';
 
 @Entity({ name: 'orders' })
 export class Order {
@@ -41,11 +42,11 @@ export class Order {
   description: string;
 
   @ManyToOne(() => User, user => user.orders)
-  @JoinColumn({name: "created_by"})
+  @JoinColumn({ name: "created_by" })
   created_by: User;
 
   @ManyToOne(() => User, user => user.volunteer_orders)
-  @JoinColumn({name: "accepted_by"})
+  @JoinColumn({ name: "accepted_by" })
   accepted_by: User;
 
   @IsString()
@@ -55,4 +56,8 @@ export class Order {
   @IsEnum(['open', 'in progress', 'done', 'canceled'])
   @Column()
   status: string;
+
+  @OneToMany(() => Report, report => report.order)
+  orders: Order[];
+
 }

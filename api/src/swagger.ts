@@ -44,6 +44,14 @@ export const swaggerJson = {
           'longitude': { 'type': 'number' },
         },
       },
+      'Report': {
+        'type': 'object',
+        'required': ['subject', 'message'],        
+        'properties': {
+          'subject': { 'type': 'string' },
+          'message': { 'type': 'string' },
+        },
+      },
       "ApiResponse": {
         "type": "object",
         "properties": {

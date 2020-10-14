@@ -1,11 +1,8 @@
 import {
   BeforeInsert,
-  BeforeUpdate,
   Column,
   Entity,
-  JoinColumn,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import * as crypto from 'crypto';
@@ -25,10 +22,10 @@ export class User {
   @Column()
   surname: string;
 
-  @OneToMany(() => Order, order => order.created_by, {eager: true})
+  @OneToMany(() => Order, order => order.created_by, { eager: true })
   orders: Order[];
 
-  @OneToMany(() => Order, order => order.accepted_by, {eager: true})
+  @OneToMany(() => Order, order => order.accepted_by, { eager: true })
   volunteer_orders: Order[];
 
   @IsNumber()
@@ -63,10 +60,14 @@ export class User {
   @Column({ nullable: false })
   password: string;
 
+
+  @Column({ nullable: true })
+  points: number;
+
   @BeforeInsert()
   async hashPassword() {
     if (this.password) {
-      this.password = await crypto.createHmac('sha256', this.password).digest('hex');
+      this.password = crypto.createHmac('sha256', this.password).digest('hex');
     }
   }
 }
