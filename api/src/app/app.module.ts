@@ -11,6 +11,7 @@ import { AuthModule } from '../auth/auth.module';
 import config from '../database/config/local';
 import { LoggerModule } from "../logger/logger.module";
 import { OrdersModule } from "../orders/orders.module";
+import { ReportModule } from 'src/report/report.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { OrdersModule } from "../orders/orders.module";
     UserModule,
     LoggerModule,
     OrdersModule,
+    ReportModule,
     AuthModule,
   ],
   controllers: [AppController],

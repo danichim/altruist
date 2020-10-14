@@ -11,7 +11,23 @@ export class OrdersExistValidator implements ValidatorConstraintInterface {
   };
 
   defaultMessage(validationArguments?: ValidationArguments): string {
-    const dataObject = validationArguments.object as any;
-    return `Order with id ${dataObject.id} does not exist`;
+    return `Order with id ${validationArguments.value} does not exist`;
+  }
+}
+
+
+@ValidatorConstraint()
+export class OrderAlreadyCompleteValidator implements ValidatorConstraintInterface {
+  validate = async (id: any) => {
+    const order = await getRepository(Order).findOne({ where: { id, status: "done" } });
+    if (order) {
+      return false
+    }
+    return true
+  };
+
+  defaultMessage(validationArguments?: ValidationArguments): string {
+    console.log({ validationArguments })
+    return `Order has already been completed.`;
   }
 }
